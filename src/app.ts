@@ -2,6 +2,8 @@ import express from "express";
 import { AppDataSource } from "./database/data-source";
 import bodyParser from "body-parser";
 import errorMiddleware from "./utils/error-middleware";
+import MenuRoutes from './API/routes/menu.routes';
+import MenuItemRoutes from './API/routes/menu-item.routes';
 
 async function startServer() {
   const app = express();
@@ -11,8 +13,8 @@ async function startServer() {
 
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
-//   app.use("/api/v1/files", fileDownloadRoutes);
-//   app.use("/api/v1/reports", reportRoutes);
+  app.use("/api/v1/menus", MenuRoutes);
+  app.use("/api/v1/menu-items", MenuItemRoutes);
   app.use(errorMiddleware);
 
   app.listen(port, () => {
