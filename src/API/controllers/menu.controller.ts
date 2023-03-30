@@ -10,14 +10,15 @@ export async function create(req: Request, res: Response, next: NextFunction) {
   try {
     const { date, status } = req.body;
     const checkedStatus = toMenuStatus(status);
+    const finalDate = new Date(date);
     if (!date || !checkedStatus) {
       throw new HttpError(400, "Bad request");
     }
-    const menu = new Menu("", date, checkedStatus);
+    const menu = new Menu(finalDate, checkedStatus);
     const newId = await menuService.create(menu);
     res.status(201).json({
       message: "Account saved successfully",
-      newAccountId: newId,
+      newItemId: newId,
     });
   } catch (error) {
     next(error);

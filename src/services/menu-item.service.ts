@@ -22,6 +22,9 @@ export default class MenuItemService {
 
   async readByMenuId(menuId: string) {
     const items = await this.menuItemRepository.readByMenuId(menuId);
+    if(items.length === 0) {
+      throw new HttpError(404, "Menu items not found");
+    }
     return items;
   }
 
@@ -30,7 +33,7 @@ export default class MenuItemService {
       let newId = await this.menuItemRepository.create(menuItem);
       return newId;
     } catch (error) {
-      throw new HttpError(400, "Bad request. Incorrect data.");
+      throw new HttpError(400, error.message || "Bad request");
     }
   }
 
@@ -43,7 +46,7 @@ export default class MenuItemService {
         throw new HttpError(404, "Menu item not found");
       }
     } catch (error) {
-      throw new HttpError(400, "Bad request.");
+      throw new HttpError(400, error.message || "Bad request");
     }
   }
 

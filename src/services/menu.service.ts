@@ -25,7 +25,7 @@ export default class MenuService {
       let newId = await this.menuRepository.create(menu);
       return newId;
     } catch (error) {
-        throw new HttpError(400, "Bad request");
+        throw new HttpError(400, error.message || "Bad request");
     }
   }
 
@@ -38,7 +38,7 @@ export default class MenuService {
         throw new HttpError(404, "Menu not found");
       }
     } catch (error) {
-        throw new HttpError(400, "Bad request");
+        throw new HttpError(400, error.message || "Bad request");
     }
   }
 

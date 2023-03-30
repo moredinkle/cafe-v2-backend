@@ -5,8 +5,7 @@ export default class Menu {
     date: Date;
     status: MenuStatus;
 
-    constructor(id: string, date: Date, status: MenuStatus) {
-        this.id = id;
+    constructor(date: Date, status: MenuStatus) {
         this.date = date;
         this.status = status;
     }

@@ -1,7 +1,7 @@
 import { MenuStatus } from '../../utils/types';
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity("MenuEntity")
+@Entity("Menu")
 export default class MenuEntity {
     @PrimaryGeneratedColumn("uuid")
     id: string;

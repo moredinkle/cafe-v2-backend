@@ -5,8 +5,7 @@ export default class MenuItem {
   stock: number;
   menuId: string;
 
-  constructor(id: string, name: string, price: number, stock: number, menuId: string) {
-    this.id = id;
+  constructor(name: string, price: number, stock: number, menuId: string) {
     this.name = name;
     this.price = price;
     this.stock = stock;

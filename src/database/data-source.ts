@@ -1,5 +1,8 @@
 import { DataSource } from 'typeorm';
 import { envConfig } from '../env-config';
+import MenuEntity from './db-entities/menu.entity';
+import MenuItemEntity from './db-entities/menu-item.entity';
+
 export const AppDataSource = new DataSource({
     type: "postgres",
     host: envConfig.host,
@@ -9,7 +12,7 @@ export const AppDataSource = new DataSource({
     database: envConfig.database,
     synchronize: true,
     logging: false,
-    entities: [],
+    entities: [MenuEntity, MenuItemEntity],
     subscribers: [],
     migrations: [],
 })
