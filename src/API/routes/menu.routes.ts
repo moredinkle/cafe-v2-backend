@@ -12,4 +12,4 @@ router.put("/:menuId", menuController.update);
 router.delete("/:menuId", menuController.deleteOne);
 
 
-export default router; 
+export default router;
