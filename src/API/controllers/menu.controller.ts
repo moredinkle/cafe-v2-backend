@@ -17,8 +17,8 @@ export async function create(req: Request, res: Response, next: NextFunction) {
     const menu = new Menu(finalDate, checkedStatus);
     const newId = await menuService.create(menu);
     res.status(201).json({
-      message: "Account saved successfully",
-      newItemId: newId,
+      message: "Menu saved successfully",
+      newMenuId: newId,
     });
   } catch (error) {
     next(error);
@@ -29,6 +29,31 @@ export async function readOne(req: Request, res: Response, next: NextFunction) {
   try {
     const { menuId } = req.params;
     const menu = await menuService.readOne(menuId);
+    res.status(200).json({
+      message: "Menu  found",
+      data: menu,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function readActive(req: Request, res: Response, next: NextFunction) {
+  try {
+    const menu = await menuService.readActive();
+    res.status(200).json({
+      message: "Active menu found",
+      data: menu,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function readWithItems(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { menuId } = req.params;
+    const menu = await menuService.readWithItems(menuId);
     res.status(200).json({
       message: "Menu  found",
       data: menu,

@@ -22,9 +22,6 @@ export default class MenuItemService {
 
   async readByMenuId(menuId: string) {
     const items = await this.menuItemRepository.readByMenuId(menuId);
-    if(items.length === 0) {
-      throw new HttpError(404, "Menu items not found");
-    }
     return items;
   }
 

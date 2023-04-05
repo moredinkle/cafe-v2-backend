@@ -1,7 +1,7 @@
 import "reflect-metadata";
-import OrderRepository from "../database/repositories/Order.repository";
+import OrderRepository from "../database/repositories/order.repository";
 import HttpError from "../utils/http-error";
-import Order from "../entities/Order";
+import Order from "../entities/order";
 import logger from "jet-logger";
 
 export default class OrderService {

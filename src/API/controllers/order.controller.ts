@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import OrderService from "../../services/order.service";
-import Order from "../../entities/Order";
+import Order from "../../entities/order";
 import HttpError from "../../utils/http-error";
 import { toOrderType } from "../../utils/types.converter";
 

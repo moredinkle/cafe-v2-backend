@@ -22,6 +22,14 @@ export default class MenuRepository {
     return Menu ? (Menu as Menu) : undefined;
   }
 
+  async readActive():Promise<Menu | undefined> {
+    const repository = AppDataSource.getRepository(MenuEntity);
+    let menu = await repository.createQueryBuilder("Menu")
+    .where("Menu.status = :status", { status: "ACTIVE" })
+    .getOne()
+    return menu ? (menu as Menu) : undefined;
+  }
+
   async update(menu: MenuEntity) {
     const repository = AppDataSource.getRepository(MenuEntity);
     const newValues = {

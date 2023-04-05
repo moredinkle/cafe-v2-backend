@@ -3,11 +3,14 @@ import MenuRepository from "../database/repositories/menu.repository";
 import HttpError from "../utils/http-error";
 import Menu from "../entities/menu";
 import logger from "jet-logger";
+import MenuItemService from './menu-item.service';
 
 export default class MenuService {
   private menuRepository: MenuRepository;
+  private menuItemService: MenuItemService;
   constructor() {
     this.menuRepository = new MenuRepository();
+    this.menuItemService = new MenuItemService();
   }
 
   async readAll() {
@@ -18,6 +21,17 @@ export default class MenuService {
   async readOne(id: string) {
     const menu = await this.menuRepository.readOne(id);
     return menu;
+  }
+
+  async readActive() {
+    const menu = await this.menuRepository.readActive();
+    return menu;
+  }
+
+  async readWithItems(id: string){
+    const menu = await this.menuRepository.readOne(id);
+    const items = await this.menuItemService.readByMenuId(id);
+    return {menu, items};
   }
 
   async create(menu: Menu) {
