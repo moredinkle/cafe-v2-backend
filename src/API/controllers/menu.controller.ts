@@ -38,18 +38,6 @@ export async function readOne(req: Request, res: Response, next: NextFunction) {
   }
 }
 
-export async function readActive(req: Request, res: Response, next: NextFunction) {
-  try {
-    const menu = await menuService.readActive();
-    res.status(200).json({
-      message: "Active menu found",
-      data: menu,
-    });
-  } catch (error) {
-    next(error);
-  }
-}
-
 export async function readWithItems(req: Request, res: Response, next: NextFunction) {
   try {
     const { menuId } = req.params;
@@ -65,7 +53,15 @@ export async function readWithItems(req: Request, res: Response, next: NextFunct
 
 export async function readAll(req: Request, res: Response, next: NextFunction) {
   try {
-    const menus = await menuService.readAll();
+    let { field, value } = req.query;
+    field = field as string;
+    value = value as string;
+    let menus = undefined;
+    if (field && value) {
+      menus = await menuService.readFiltered(field, value);
+    } else {
+      menus = await menuService.readAll();
+    }
     res.status(200).json({
       message: "Menus found",
       data: menus,

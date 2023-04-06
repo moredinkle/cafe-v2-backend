@@ -12,8 +12,10 @@ export default class MenuRepository {
 
   async readAll() {
     const repository = AppDataSource.getRepository(MenuEntity);
-    let Menus = await repository.find();
-    return Menus ? Menus.map((menu) => menu as Menu) : undefined;
+    let menus = await repository.createQueryBuilder("Menu")
+    .orderBy("Menu.date", "DESC")
+    .getMany();
+    return menus ? menus.map((menu) => menu as Menu) : undefined;
   }
 
   async readOne(id: string):Promise<Menu | undefined> {
@@ -22,12 +24,12 @@ export default class MenuRepository {
     return Menu ? (Menu as Menu) : undefined;
   }
 
-  async readActive():Promise<Menu | undefined> {
+  async readFiltered(field: string, value: string):Promise<Menu[] | undefined> {
     const repository = AppDataSource.getRepository(MenuEntity);
-    let menu = await repository.createQueryBuilder("Menu")
-    .where("Menu.status = :status", { status: "ACTIVE" })
-    .getOne()
-    return menu ? (menu as Menu) : undefined;
+    let menus = await repository.createQueryBuilder("Menu")
+    .where(`Menu.${field} = '${value}'`)
+    .getMany()
+    return menus ? menus.map((menu) => menu as Menu) : undefined;
   }
 
   async update(menu: MenuEntity) {

@@ -23,8 +23,8 @@ export default class MenuService {
     return menu;
   }
 
-  async readActive() {
-    const menu = await this.menuRepository.readActive();
+  async readFiltered(field: string, value: string) {
+    const menu = await this.menuRepository.readFiltered(field, value);
     return menu;
   }
 
