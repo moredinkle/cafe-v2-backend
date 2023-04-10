@@ -21,6 +21,12 @@ export default class orderItemRepository {
     return orderItem ? (orderItem as OrderItem) : undefined;
   }
 
+  // async readByMenuId(menuId: string):Promise<OrderItem[] | undefined> {
+  //   const repository = AppDataSource.getRepository(OrderItemEntity);
+  //   let orderItems = await repository.findBy({: menuId});
+  //   return menuItems ? menuItems.map((menuItem) => menuItem as MenuItem) : undefined;
+  // }
+
   async update(orderItem: OrderItemEntity) {
     const repository = AppDataSource.getRepository(OrderItemEntity);
     const newValues = {

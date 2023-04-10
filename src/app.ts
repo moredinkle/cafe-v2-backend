@@ -8,6 +8,7 @@ import errorMiddleware from "./utils/error-middleware";
 import MenuRoutes from "./API/routes/menu.routes";
 import MenuItemRoutes from "./API/routes/menu-item.routes";
 import OrderRoutes from "./API/routes/order.routes";
+import OrderItemRoutes from "./API/routes/order-item.routes";
 
 async function startServer() {
   const app = express();
@@ -27,6 +28,7 @@ async function startServer() {
   app.use("/api/v1/menus", MenuRoutes);
   app.use("/api/v1/menu-items", MenuItemRoutes);
   app.use("/api/v1/orders", OrderRoutes);
+  app.use("/api/v1/order-items", OrderItemRoutes);
   app.use(errorMiddleware);
 
   app.listen(port, () => {

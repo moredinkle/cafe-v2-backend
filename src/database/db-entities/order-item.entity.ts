@@ -1,8 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { OrderType } from "../../utils/types";
 
-@Entity("Order")
-export default class OrderEntity {
+@Entity("OrderItem")
+export default class OrderItemEntity {
     @PrimaryGeneratedColumn("uuid")
     id: string;
     @Column()

@@ -17,7 +17,7 @@ export async function create(req: Request, res: Response, next: NextFunction) {
     const newId = await orderService.create(order);
     res.status(201).json({
       message: "Account saved successfully",
-      newItemId: newId,
+      newId: newId,
     });
   } catch (error) {
     next(error);
