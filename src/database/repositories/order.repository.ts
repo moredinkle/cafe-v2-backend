@@ -4,7 +4,6 @@ import Order from "../../entities/order";
 
 export default class orderRepository {
   async create(order: OrderEntity) {
-    console.log(order);
     const orderRepository = AppDataSource.getRepository(OrderEntity);
     const created = await orderRepository.insert(order);
     return created.generatedMaps[0].id;

@@ -10,7 +10,7 @@ export async function create(req: Request, res: Response, next: NextFunction) {
   try {
     const { total, payedWith, change, type } = req.body;
     const checkedType = toOrderType(type);
-    if (!total || !payedWith || !change || !checkedType) {
+    if ((total === null || total === undefined) || (payedWith === null || payedWith === undefined) || (change === null || change === undefined) || !checkedType) {
       throw new HttpError(400, "Bad request");
     }
     const order = new Order(total, payedWith, change, checkedType);
@@ -54,7 +54,7 @@ export async function update(req: Request, res: Response, next: NextFunction) {
     const { OrderId } = req.params;
     const { total, payedWith, change, type } = req.body;
     const checkedType = toOrderType(type);
-    if (!total || !payedWith || !change || !checkedType) {
+    if ((total === null || total === undefined) || (payedWith === null || payedWith === undefined) || (change === null || change === undefined) || !checkedType) {
       throw new HttpError(400, "Bad request");
     }
     const order = await orderService.readOne(OrderId);
