@@ -35,7 +35,6 @@ export default class MenuRepository {
   async update(menu: MenuEntity) {
     const repository = AppDataSource.getRepository(MenuEntity);
     const newValues = {
-      date: menu.date,
       status: menu.status
     };
     await repository.update(menu.id, newValues);

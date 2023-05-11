@@ -1,4 +1,4 @@
-import { MenuStatus, OrderType } from "./types";
+import { ExtraType, MenuStatus, OrderType } from "./types";
 
 export function toMenuStatus(str: string): MenuStatus | undefined {
   let result: MenuStatus;
@@ -26,6 +26,21 @@ export function toOrderType(str: string): OrderType | undefined {
       break;
     case "SERVIDOR":
       result = "SERVIDOR";
+      break;
+    default:
+      return undefined;
+  }
+  return result;
+}
+
+export function toExtraType(str: string): ExtraType | undefined {
+  let result: ExtraType;
+  switch (str) {
+    case "GASTO":
+      result = "GASTO";
+      break;
+    case "INGRESO":
+      result = "INGRESO";
       break;
     default:
       return undefined;

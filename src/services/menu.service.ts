@@ -43,11 +43,23 @@ export default class MenuService {
     }
   }
 
+  async clearActiveMenus(){
+    const activeMenus = await this.menuRepository.readFiltered("status", "ACTIVE");
+    for(const menu of activeMenus){
+      menu.status = "FINISHED";
+      await this.menuRepository.update(menu);
+    }
+  }
+
   async update(menu: Menu) {
     try {
       const exisitingMenu = await this.readOne(menu.id);
       if (exisitingMenu) {
+        if(menu.status === "ACTIVE") {
+          await this.clearActiveMenus();
+        }
         await this.menuRepository.update(menu);
+        return menu;
       } else {
         throw new HttpError(404, "Menu not found");
       }

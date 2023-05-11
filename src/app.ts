@@ -21,7 +21,6 @@ async function startServer() {
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
   app.use(morgan("dev"));
-  //TODO tal vez cambiar esto por un env
   app.use(
     cors({
       origin: envConfig.frontendUri,

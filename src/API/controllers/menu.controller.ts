@@ -81,9 +81,10 @@ export async function update(req: Request, res: Response, next: NextFunction) {
     }
     const menu = await menuService.readOne(menuId);
     menu.status = checkedStatus;
-    await menuService.update(menu);
+    const updated = await menuService.update(menu);
     res.status(200).json({
       message: "Menu updated successfully",
+      updatedMenu: updated
     });
   } catch (error) {
     next(error);
