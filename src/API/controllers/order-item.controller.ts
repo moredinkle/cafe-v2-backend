@@ -7,7 +7,8 @@ const orderItemService = new OrderItemService();
 
 export async function create(req: Request, res: Response, next: NextFunction) {
   try {
-    const { quantity ,subtotal ,menuItemId ,orderId } = req.body;
+    const { quantity ,subtotal ,menuItemId } = req.body;
+    const { orderId } = req.params;
     if (!quantity || !subtotal || !menuItemId || !orderId) {
       throw new HttpError(400, "Bad request");
     }

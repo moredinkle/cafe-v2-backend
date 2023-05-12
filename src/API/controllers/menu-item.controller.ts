@@ -7,7 +7,8 @@ const menuItemService = new MenuItemService();
 
 export async function create(req: Request, res: Response, next: NextFunction) {
   try {
-    const { name, price, stock, menuId } = req.body;
+    const { name, price, stock } = req.body;
+    const { menuId } = req.params;
     if (!name || !price || !stock || !menuId) {
       throw new HttpError(400, "Bad request");
     }
