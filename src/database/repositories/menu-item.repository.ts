@@ -31,12 +31,13 @@ export default class MenuItemRepository {
 
   async readMenuSalesReport(menuId: string): Promise<SalesReportRow[] | undefined> {
     const report = await AppDataSource.query(`
-    select mi.id, mi.name, mi.price, mi.stock, sum(oi.subtotal) as subtotal, sum(oi.quantity) as sold
+    select mi.id, mi.name, mi.price, mi.stock, COALESCE(sum(oi.subtotal), 0) as subtotal, coalesce(sum(oi.quantity),0) as sold
     from "MenuItem" mi
-    join "OrderItem" oi
+    left join "OrderItem" oi
     on mi.id::text = oi."menuItemId"
     where mi."menuId" = '${menuId}'
     group by mi.id, mi.name, mi.price
+    order by subtotal desc
     `);
     return report ? report.map((row: any) => row as SalesReportRow) : undefined;
   }
