@@ -26,11 +26,11 @@ async function startServer() {
       origin: envConfig.frontendUri,
     })
   );
-  app.use("/api/v1/menus", MenuRoutes);
-  app.use("/api/v1/menus", MenuItemRoutes);
-  app.use("/api/v1/menus", MenuExtraRoutes);
-  app.use("/api/v1/orders", OrderRoutes);
-  app.use("/api/v1/orders", OrderItemRoutes);
+  app.use("/api/v2/menus", MenuRoutes);
+  app.use("/api/v2/menus", MenuItemRoutes);
+  app.use("/api/v2/menus", MenuExtraRoutes);
+  app.use("/api/v2/orders", OrderRoutes);
+  app.use("/api/v2/orders", OrderItemRoutes);
   app.use(errorMiddleware);
 
   app.listen(port, () => {

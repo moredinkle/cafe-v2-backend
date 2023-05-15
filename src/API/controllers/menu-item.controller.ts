@@ -62,6 +62,19 @@ export async function readSalesReport(req: Request, res: Response, next: NextFun
   }
 }
 
+export async function readUshersReport(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { menuId } = req.params;
+    const items = await menuItemService.readUshersReport(menuId);
+    res.status(200).json({
+      message: "Sales report found",
+      data: items,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 export async function readAll(req: Request, res: Response, next: NextFunction) {
   try {
     const items = await menuItemService.readAll();

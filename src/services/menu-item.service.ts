@@ -30,6 +30,11 @@ export default class MenuItemService {
     return items;
   }
 
+  async readUshersReport(menuId: string) {
+    const items = await this.menuItemRepository.readMenuUshersReport(menuId);
+    return items;
+  }
+
   async create(menuItem: MenuItem) {
     try {
       let newId = await this.menuItemRepository.create(menuItem);

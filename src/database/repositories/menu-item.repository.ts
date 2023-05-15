@@ -35,8 +35,25 @@ export default class MenuItemRepository {
     from "MenuItem" mi
     left join "OrderItem" oi
     on mi.id::text = oi."menuItemId"
-    where mi."menuId" = '${menuId}'
-    group by mi.id, mi.name, mi.price
+	  join "Order" ord
+	  on ord.id::text = oi."orderId"
+    where mi."menuId" = '${menuId}' and ord."type" = 'VENTA'
+	  group by mi.id, mi.name, mi.price
+    order by subtotal desc
+    `);
+    return report ? report.map((row: any) => row as SalesReportRow) : undefined;
+  }
+
+  async readMenuUshersReport(menuId: string): Promise<SalesReportRow[] | undefined> {
+    const report = await AppDataSource.query(`
+    select mi.id, mi.name, mi.price, mi.stock, COALESCE(sum(oi.subtotal), 0) as subtotal, coalesce(sum(oi.quantity),0) as sold
+    from "MenuItem" mi
+    left join "OrderItem" oi
+    on mi.id::text = oi."menuItemId"
+	  join "Order" ord
+	  on ord.id::text = oi."orderId"
+    where mi."menuId" = '${menuId}' and ord."type" = 'SERVIDOR'
+	  group by mi.id, mi.name, mi.price
     order by subtotal desc
     `);
     return report ? report.map((row: any) => row as SalesReportRow) : undefined;
