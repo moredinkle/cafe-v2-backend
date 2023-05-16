@@ -5,6 +5,7 @@ import OrderEntity from './db-entities/order.entity';
 import MenuItemEntity from './db-entities/menu-item.entity';
 import OrderItemEntity from './db-entities/order-item.entity';
 import MenuExtraEntity from './db-entities/menu-extra.entity';
+import UserEntity from './db-entities/user.entity';
 
 export const AppDataSource = new DataSource({
     type: "postgres",
@@ -15,7 +16,7 @@ export const AppDataSource = new DataSource({
     database: envConfig.database,
     synchronize: true,
     logging: false,
-    entities: [MenuEntity, MenuItemEntity, OrderEntity, OrderItemEntity, MenuExtraEntity],
+    entities: [MenuEntity, MenuItemEntity, OrderEntity, OrderItemEntity, MenuExtraEntity, UserEntity],
     subscribers: [],
     migrations: [],
 })

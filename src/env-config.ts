@@ -9,5 +9,6 @@ export const envConfig = {
     username: process.env.DB_USERNAME || '',
     password: process.env.DB_PASSWORD || '',
     database: process.env.DATABASE || '',
-    frontendUri: process.env.FRONTEND_URI || "",
+    frontendUri: process.env.FRONTEND_URI || '',
+    jwtSecret: process.env.JWT_SECRET || ''
 }
