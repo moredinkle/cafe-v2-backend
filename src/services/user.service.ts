@@ -26,11 +26,10 @@ export default class UserService {
       }
       const correctPassword = bcrypt.compareSync(password, foundUser.password);
       if (correctPassword) {
-        console.log(envConfig.jwtSecret);
         const token = jwt.sign({ id: foundUser.id, username: foundUser.username }, envConfig.jwtSecret, {
           expiresIn: "6h",
         });
-        return {username: foundUser.username, token};
+        return {username: foundUser.username, id: foundUser.id, token};
       } else {
         throw new HttpError(400, "Incorrect password");
       }

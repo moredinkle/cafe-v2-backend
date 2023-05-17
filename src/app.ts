@@ -4,6 +4,7 @@ import cors from 'cors';
 import { AppDataSource } from "./database/data-source";
 import { envConfig } from './env-config';
 import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
 
 import errorMiddleware from "./utils/error-middleware";
 import {authMiddleware} from "./utils/auth-middleware";
@@ -22,12 +23,14 @@ async function startServer() {
 
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
+  app.use(cookieParser());
   app.use(morgan("dev"));
   app.use(
     cors({
       origin: envConfig.frontendUri,
     })
   );
+
   app.use("/api/v2/menus", authMiddleware, MenuRoutes);
   app.use("/api/v2/menus", authMiddleware, MenuItemRoutes);
   app.use("/api/v2/menus", authMiddleware, MenuExtraRoutes);

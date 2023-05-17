@@ -13,7 +13,6 @@ export async function authMiddleware(req: Request, res: Response, next: NextFunc
     }
     const decoded = jwt.verify(token, envConfig.jwtSecret);
     (req as CustomRequest).token = decoded;
-    console.log(req);
 
     next();
   } catch (err) {
@@ -23,7 +22,6 @@ export async function authMiddleware(req: Request, res: Response, next: NextFunc
 }
 
 export function authDispatcher(req: Request, res: Response, next: NextFunction) {
-  console.log(req.path);
   if (req.path === '/api/v2/auth/login') {
     next();
   } else {
