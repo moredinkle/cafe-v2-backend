@@ -28,6 +28,11 @@ export default class MenuService {
     return menu;
   }
 
+  async readByDate(start: string, end: string) {
+    const menus = await this.menuRepository.readByDate(start, end);
+    return menus;
+  }
+
   async readWithItems(id: string){
     const menu = await this.menuRepository.readOne(id);
     const items = await this.menuItemService.readByMenuId(id);

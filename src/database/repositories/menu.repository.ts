@@ -32,6 +32,16 @@ export default class MenuRepository {
     return menus ? menus.map((menu) => menu as Menu) : undefined;
   }
 
+  async readByDate(start: string, end: string):Promise<Menu[] | undefined>{
+    const repository = AppDataSource.getRepository(MenuEntity);
+    let menus = await repository.createQueryBuilder("Menu")
+    .where('Menu.date >= :start', { start: start })
+    .andWhere('Menu.date <= :end', { end: end })
+    .orderBy("Menu.date", "DESC")
+    .getMany();
+    return menus ? menus.map((menu) => menu as Menu) : undefined;
+  }
+
   async update(menu: MenuEntity) {
     const repository = AppDataSource.getRepository(MenuEntity);
     const newValues = {

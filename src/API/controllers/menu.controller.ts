@@ -53,13 +53,18 @@ export async function readWithItems(req: Request, res: Response, next: NextFunct
 
 export async function readAll(req: Request, res: Response, next: NextFunction) {
   try {
-    let { field, value } = req.query;
+    let { field, value, start, end } = req.query;
     field = field as string;
     value = value as string;
+    start = start as string;
+    end = end as string;
     let menus = undefined;
     if (field && value) {
       menus = await menuService.readFiltered(field, value);
-    } else {
+    } else if(start && end){
+      menus = await menuService.readByDate(start, end);
+    }
+    else{
       menus = await menuService.readAll();
     }
     res.status(200).json({
