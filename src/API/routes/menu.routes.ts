@@ -7,7 +7,7 @@ const router = Router();
 
 router.get("/", menuController.readAll);
 router.get("/:menuId", menuController.readOne);
-router.get("/:menuId/complete", menuController.readWithItems);
+router.get("/:menuId/complete", menuController.readComplete);
 router.post("/", menuController.create);
 router.put("/:menuId", menuController.update);
 router.delete("/:menuId", menuController.deleteOne);

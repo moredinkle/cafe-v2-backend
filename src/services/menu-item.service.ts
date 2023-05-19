@@ -25,14 +25,20 @@ export default class MenuItemService {
     return items;
   }
 
+  async readFullReport(menuId: string) {
+    const sales = await this.readSalesReport(menuId);
+    const ushers = await this.readUshersReport(menuId);
+    return {sales, ushers};
+  }
+
   async readSalesReport(menuId: string) {
-    const items = await this.menuItemRepository.readMenuSalesReport(menuId);
-    return items;
+    const sales = await this.menuItemRepository.readMenuSalesReport(menuId);
+    return sales;
   }
 
   async readUshersReport(menuId: string) {
-    const items = await this.menuItemRepository.readMenuUshersReport(menuId);
-    return items;
+    const ushers = await this.menuItemRepository.readMenuUshersReport(menuId);
+    return ushers;
   }
 
   async create(menuItem: MenuItem) {

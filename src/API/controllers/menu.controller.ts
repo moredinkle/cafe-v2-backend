@@ -38,13 +38,13 @@ export async function readOne(req: Request, res: Response, next: NextFunction) {
   }
 }
 
-export async function readWithItems(req: Request, res: Response, next: NextFunction) {
+export async function readComplete(req: Request, res: Response, next: NextFunction) {
   try {
     const { menuId } = req.params;
-    const menu = await menuService.readWithItems(menuId);
+    const menu = await menuService.readComplete(menuId);
     res.status(200).json({
-      message: "Menu  found",
-      data: menu,
+      message: "Menu found",
+      menuData: menu,
     });
   } catch (error) {
     next(error);

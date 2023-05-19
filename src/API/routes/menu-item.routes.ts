@@ -8,6 +8,7 @@ router.get("/:menuId/items/:menuItemId", menuItemController.readOne);
 router.get("/:menuId/items", menuItemController.readByMenuId);
 router.get("/:menuId/sales", menuItemController.readSalesReport);
 router.get("/:menuId/ushers", menuItemController.readUshersReport);
+router.get("/:menuId/report", menuItemController.readFullReport);
 router.post("/:menuId/items", menuItemController.create);
 router.put("/:menuId/items/:menuItemId", menuItemController.update);
 router.delete("/:menuId/items/:menuItemId", menuItemController.deleteOne);
