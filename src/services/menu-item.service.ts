@@ -26,9 +26,10 @@ export default class MenuItemService {
   }
 
   async readFullReport(menuId: string) {
+    const items = await this.readByMenuId(menuId);
     const sales = await this.readSalesReport(menuId);
     const ushers = await this.readUshersReport(menuId);
-    return {sales, ushers};
+    return {items, sales, ushers};
   }
 
   async readSalesReport(menuId: string) {
