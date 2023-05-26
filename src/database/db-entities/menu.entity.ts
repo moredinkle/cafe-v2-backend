@@ -5,8 +5,8 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 export default class MenuEntity {
     @PrimaryGeneratedColumn("uuid")
     id: string;
-    @Column()
-    date: Date;
+    @Column({type: "timestamptz"})
+    date: Date; 
     @Column()
     status: MenuStatus;
 }

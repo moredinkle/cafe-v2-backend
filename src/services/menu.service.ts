@@ -64,18 +64,13 @@ export default class MenuService {
 
   async update(menu: Menu) {
     try {
-      const exisitingMenu = await this.readOne(menu.id);
-      if (exisitingMenu) {
-        if(menu.status === "ACTIVE") {
-          await this.clearActiveMenus();
-        }
-        await this.menuRepository.update(menu);
-        return menu;
-      } else {
-        throw new HttpError(404, "Menu not found");
+      if(menu.status === "ACTIVE") {
+        await this.clearActiveMenus();
       }
+      await this.menuRepository.update(menu);
+      return menu;
     } catch (error) {
-        throw new HttpError(400, error.message || "Bad request");
+        throw new HttpError(error.status || 400, error.message || "Bad request");
     }
   }
 
