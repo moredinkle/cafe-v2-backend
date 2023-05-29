@@ -1,0 +1,1 @@
+{"version":3,"file":"order.js","sourceRoot":"","sources":["../../src/entities/order.ts"],"names":[],"mappings":";;AAEA,MAAqB,KAAK;IAOxB,YAAY,KAAa,EAAE,SAAiB,EAAE,MAAc,EAAE,IAAe;QAC3E,IAAI,CAAC,KAAK,GAAG,KAAK,CAAC;QACnB,IAAI,CAAC,SAAS,GAAG,SAAS,CAAC;QAC3B,IAAI,CAAC,MAAM,GAAG,MAAM,CAAC;QACrB,IAAI,CAAC,IAAI,GAAG,IAAI,CAAC;IACnB,CAAC;CACF;AAbD,wBAaC"}

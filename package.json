@@ -4,12 +4,20 @@
   "description": "a ver",
   "main": "app.ts",
   "scripts": {
-    "start": "npx ts-node src/app.ts",
+    "start": "npx nodemon src/app.ts",
     "dev": "npx nodemon src/app.ts",
+    "build": "rimraf dist && tsc",
+    "ts.check": "tsc --project tsconfig.json",
+    "add-build": "git add dist",
     "test": "test",
     "lint-and-fix": "eslint . --ext .ts --fix",
     "lint": "eslint . --ext .ts"
   },
+  "pre-commit": [
+    "ts.check",
+    "build",
+    "add-build"
+  ],
   "author": "me",
   "license": "ISC",
   "dependencies": {
@@ -38,6 +46,8 @@
     "@typescript-eslint/parser": "^5.44.0",
     "eslint": "^8.28.0",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.21"
+    "nodemon": "^2.0.21",
+    "pre-commit": "^1.2.2",
+    "rimraf": "^5.0.1"
   }
 }

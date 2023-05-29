@@ -1,8 +1,9 @@
-import {config} from "dotenv";
-
-config();
-
-export const envConfig = {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.envConfig = void 0;
+const dotenv_1 = require("dotenv");
+(0, dotenv_1.config)();
+exports.envConfig = {
     type: process.env.DB_TYPE || '',
     host: process.env.DB_HOST || '',
     port: process.env.DB_PORT || '',
@@ -12,4 +13,5 @@ export const envConfig = {
     frontendUri: process.env.FRONTEND_URI || '',
     dbUrl: process.env.DB_URL || '',
     jwtSecret: process.env.JWT_SECRET || ''
-}
+};
+//# sourceMappingURL=env-config.js.map

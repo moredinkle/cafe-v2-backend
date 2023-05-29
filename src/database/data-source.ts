@@ -8,12 +8,13 @@ import MenuExtraEntity from './db-entities/menu-extra.entity';
 import UserEntity from './db-entities/user.entity';
 
 export const AppDataSource = new DataSource({
+    url: envConfig.dbUrl,
     type: "postgres",
-    host: envConfig.host,
-    port: parseInt(envConfig.port) || 80,
-    username: envConfig.username,
-    password: envConfig.password,
-    database: envConfig.database,
+    // host: envConfig.host,
+    // port: parseInt(envConfig.port) || 80,
+    // username: envConfig.username,
+    // password: envConfig.password,
+    // database: envConfig.database,
     synchronize: true,
     logging: false,
     entities: [MenuEntity, MenuItemEntity, OrderEntity, OrderItemEntity, MenuExtraEntity, UserEntity],

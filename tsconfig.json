@@ -10,6 +10,10 @@
     "noImplicitAny": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "baseUrl": ".",
+      "paths": {
+          "*": ["node_modules/*", "src/types/*"]
+      }
   },
   "include": ["src"]
 }
